@@ -3,42 +3,16 @@
     
     <div class="ae-grid__item item-lg-4 au-xs-ta-center au-lg-ta-left">
       <ul class="rk-menu rk-footer-menu">
-        <li routerLinkActive="active" class="rk-menu__item">
-          <a [routerLink]="['/inicio']" class="rk-menu__link">Inicio</a>
-        </li>
-        <li routerLinkActive="active" class="rk-menu__item">
-          <a [routerLink]="['/empleados']" class="rk-menu__link">Empleados</a>
-        </li>
+        
       </ul>
-      <p class="rk-footer__text rk-footer__copy "> <span class="ae-u-bold">© </span><span class="ae-u-bolder">{{anio}} {{ coreService.info["nombre"] }} </span>  Todos los derechos reservados.</p>
+      <p class="rk-footer__text rk-footer__copy "> <span class="ae-u-bold">© </span><span class="ae-u-bolder">{{anio}} {{ coreService.info["name"] }} </span>  Todos los derechos reservados.</p>
     </div>
 
     <div class="ae-grid__item item-lg-4 au-xs-ta-center">
-      <a [href]="coreService.info['facebook']" target="_blank" class="rk-social-btn ">
-        <svg>
-          <use xlink:href="assets/img/symbols.svg#icon-facebook"></use>
-        </svg>
-      </a>
-      <a [href]="coreService.info['twitter']" target="_blank" class="rk-social-btn ">
-        <svg>
-          <use xlink:href="assets/img/symbols.svg#icon-twitter"></use>
-        </svg>
-      </a>
-      <a [href]="coreService.info['instagram']" target="_blank" class="rk-social-btn ">
-        <svg>
-          <use xlink:href="assets/img/symbols.svg#icon-pinterest"></use>
-        </svg>
-      </a>
+      
+      
     </div>
 
-    <div class="ae-grid__item item-lg-4 au-xs-ta-center au-lg-ta-right">
-      <p class="rk-footer__text rk-footer__contact "> 
-        <span class="ae-u-bold">Email: </span>
-        <span class="ae-u-bolder"> <a href="mailTo:{{coreService.info['correo']}}" target="_blank" class="rk-dark-color ">{{ coreService.info["correo"] }}</a></span>
-      </p>
-      <p class="rk-footer__text rk-footer__by">Theme by 
-        <a href="http://pixeden.com" class="ae-u-bolder">Pixeden.</a>
-      </p>
-    </div>
+    
   </div>
 </footer>

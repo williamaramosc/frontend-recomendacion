@@ -1,0 +1,133 @@
+<div>
+    <!-- Mostrar los labels inciales de acuerdo a la condición -->
+    <h4 *ngIf="mostrarTabla">Empleados</h4>
+    <h4 *ngIf="mostrarAgregar"> Agregar Empleado</h4>
+    <h4 *ngIf="mostrarActualizar"> Actualizar Empleado</h4>
+    <h4 *ngIf="mostrarCalculo"> Cálculo de Letras Empleado</h4>
+
+    <!-- Mostrar los botones inciales de acuerdo a la condición -->
+    <div class="row" style="text-align: left;">
+        <button *ngIf="mostrarTabla" pButton label="Agregar" icon="pi pi-plus" (click)="prepararNuevo()" pTooltip="Agregar"></button>
+        <button *ngIf="mostrarFormulario" pButton label="Volver" icon="pi pi-chevron-left" class="p-button-secondary" (click)="volver()" pTooltip="Volver"></button>
+        <button *ngIf="mostrarCalculo" pButton label="Volver" icon="pi pi-chevron-left" class="p-button-secondary" (click)="volver()" pTooltip="Volver"></button>
+    </div>
+</div>
+
+<!-- Mostrar la tabla de acuerdo a la condición -->
+<div *ngIf="mostrarTabla">
+    <br>
+    <p-table [columns]="columnas" [value]="registrosLista" [rows]="5" [showCurrentPageReport]="true">
+        <!-- Mostrar la cabecera de la tabla -->
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    <b>{{col.header}}</b>
+                </th>
+                <th>
+                    <strong>Cálculo de Letras</strong>
+                </th>
+                <th>
+                    <strong>Acciones</strong>
+                </th>
+            </tr>
+        </ng-template>
+
+        <!-- Mostrar el contenido de la tabla -->
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                    <span class="p-column-title">{{col.header}}</span>
+                    {{ rowData[col.field] ? col.field=='fechaNacimiento' ? (rowData[col.field] | date: 'dd-MM-yyyy') : col.field=='fechaIngreso' ? (rowData[col.field] | date: 'dd-MM-yyyy') : rowData[col.field] : '' }}
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-eye" class="p-mr-2 p-mb-2 p-button" (click)="calculo(rowData)"></button>
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-mr-2 p-mb-2 p-button-warning" (click)="editar(rowData)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-mr-2 p-mb-2 p-button-danger" style="margin-left: 30px;" (click)="eliminar(rowData['_id'])"></button>
+                </td>
+            </tr>
+        </ng-template>
+        
+        <!-- Mostrar el label de la tabla en caso de estar vacía -->
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td [attr.colspan]="columnas.length + 1">
+                    Actualmente no tiene empleados registrados.
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- Mostrar el resultado del cálculo de acuerdo a la condición -->
+<div *ngIf="mostrarCalculo">
+    <br>
+    <form [formGroup]="formulario">
+        <div class="grid">
+            <div class="col-12">
+                <label for="calculo">Cálculo de Letras</label><br>
+                <input class="input" [readonly]="true" id="calculo" pInputText formControlName="calculo" ><br>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Mostrar el formulario de acuerdo a la condición -->
+<div *ngIf="mostrarFormulario">
+    <br>
+
+    <!-- Apertura del formulario -->
+    <form [formGroup]="formulario">
+        <div class="grid">
+            <!-- Creación de campos del formulario -->
+            <div class="col-6">
+                <label for="fechaNacimiento">Fecha de Nacimiento <sup style="color: #f44336;">*</sup></label><br>
+                <p-calendar (onSelect)="calcularEdad()" dateFormat="dd-mm-yy" class="dropdown" [monthNavigator]="true" [yearNavigator]="true" placeholder="FECHA DE NACIMIENTO" yearRange="1990:2021" formControlName="fechaNacimiento" inputId="fechaNacimiento"></p-calendar>
+                <small class="p-error" *ngIf="campoNoValido('fechaNacimiento')">Campo Obligatorio</small>
+            </div>
+            <div class="col-6">
+                <label for="fechaIngreso">Fecha de Ingreso <sup style="color: #f44336;">*</sup></label><br>
+                <p-calendar dateFormat="dd-mm-yy" class="dropdown" [monthNavigator]="true" [yearNavigator]="true" placeholder="FECHA DE INGRESO" yearRange="1990:2030" formControlName="fechaIngreso" inputId="fechaIngreso"></p-calendar>
+                <small class="p-error" *ngIf="campoNoValido('fechaIngreso')">Campo Obligatorio</small>
+            </div>
+            <div class="col-6">
+                <label for="nombre">Nombre <sup style="color: #f44336;">*</sup></label><br>
+                <input class="input" id="nombre" pInputText formControlName="nombre" placeholder="NOMBRE" (keyup)="mayusculaNombre($event)"><br>
+                <small class="p-error" *ngIf="campoNoValido('nombre')">Campo Obligatorio</small>
+            </div>
+            <div class="col-6">
+                <label for="apellido">Apellido <sup style="color: #f44336;">*</sup></label><br>
+                <input class="input" id="apellido" pInputText formControlName="apellido" placeholder="APELLIDO" (keyup)="mayusculaApellido($event)"><br>
+                <small class="p-error" *ngIf="campoNoValido('apellido')">Campo Obligatorio</small>
+            </div>
+            <div class="col-6">
+                <label for="sexo">Sexo <sup style="color: #f44336;">*</sup></label><br>
+                <p-dropdown class="dropdown" [autoDisplayFirst]="false" [options]="listaSexo" placeholder="SELECCIONAR" formControlName="sexo" optionLabel="descripcion"></p-dropdown>
+                <small class="p-error" *ngIf="campoNoValido('sexo')">Campo Obligatorio</small>
+            </div>
+            <div class="col-6">
+                <label for="estrato">Estrato <sup style="color: #f44336;">*</sup></label><br>
+                <p-dropdown class="dropdown" [autoDisplayFirst]="false" [options]="listaEstrato" placeholder="SELECCIONAR" formControlName="estrato" optionLabel="descripcion"></p-dropdown>
+                <small class="p-error" *ngIf="campoNoValido('estrato')">Campo Obligatorio</small>
+            </div>
+            <div class="col-6">
+                <label for="edad">Edad <sup style="color: #f44336;">*</sup></label><br>
+                <p-inputNumber class="dropdown" [readonly]="true" inputId="edad" formControlName="edad" placeholder="EDAD"></p-inputNumber><br>
+                <small class="p-error" *ngIf="campoNoValido('edad')">Campo Obligatorio</small>
+            </div>
+        </div>
+        <br>
+
+        <!-- Mostrar los botones de acuerdo a la condición -->
+        <div class="row" style="text-align: left;">
+            <button *ngIf="mostrarAgregar" icon="pi pi-save" pButton label="Guardar" (click)="guardar()" pTooltip="Guardar"></button>
+            <button *ngIf="mostrarActualizar" icon="pi pi-save" pButton label="Guardar" (click)="actualizar()" pTooltip="Guardar"></button>
+        </div>
+
+    <!-- Cierre del formulario -->
+    </form>
+
+    <!-- Mostrar el mensaje de confirmación al realizar una inserción o actualización -->
+	<p-confirmDialog header="Confirmation" acceptLabel="Si" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+</div>

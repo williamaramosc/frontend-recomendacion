@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CoreService } from './core/services/core.service';
 
 @Component({
@@ -7,6 +8,11 @@ import { CoreService } from './core/services/core.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public _coreService: CoreService) {
+  constructor(public _coreService: CoreService,
+    public router: Router 
+    ) {
   }
+
+  ruta : any = this.router.url;
+
 }

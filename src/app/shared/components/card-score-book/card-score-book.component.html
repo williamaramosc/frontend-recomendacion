@@ -1,0 +1,12 @@
+<div class="book-item">
+    <div class="book-item-content">
+        <h3 class="text-center">{{book?.title}}</h3>
+        <div class="p-mb-3 text-center">
+            <img [src]="book?.image_url" [alt]="book?.title" class="book-image" />
+        </div>
+        <div class="text-center">
+            <h6>¿Cuanto te gusta este libro?</h6>
+            <p-rating [ngModel]="val2" [readonly]="true" [stars]="10" [cancel]="false"></p-rating>
+        </div>
+    </div>
+</div>

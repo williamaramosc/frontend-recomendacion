@@ -1,1 +1,51 @@
-<p>home works!</p>
+<!-- 
+<p-carousel [value]="books" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+    <ng-template pTemplate="header">
+        <h4 class="text-center py-2">Libros relacionados con "Aventura"</h4>
+    </ng-template>
+    <ng-template let-book pTemplate="item">
+        <app-card-score-book [book]="book" ></app-card-score-book>
+    </ng-template>
+</p-carousel>
+
+ -->
+
+
+ <p-tabView>
+     <p-tabPanel header="Para ti">
+         <div class="grid">
+             <div class="col-8">
+                 <div class="grid">
+                     <div class="col-4" *ngFor="let book of books">
+                        <app-card-book [book]="book" ></app-card-book>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-4 gustos-libros pt-0 pl-0">
+                 <h4>Por que te gusto x libro</h4>
+                 <p-carousel [value]="books" [numScroll]="3"  [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
+                     <ng-template pTemplate="header">
+                         <h4 class="text-center py-2">Libros relacionados con "Aventura"</h4>
+                     </ng-template>
+                     <ng-template let-book pTemplate="item">
+                         <app-card-book [book]="book" ></app-card-book>
+                     </ng-template>
+                 </p-carousel>
+             </div>
+         </div>
+     </p-tabPanel>
+    <p-tabPanel header="Mas Populares">
+        <div class="grid ">
+            <div class="col-3" *ngFor="let book of books">
+                <app-card-book [book]="book" ></app-card-book>
+             </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Calificados">
+        <div class="grid ">
+            <div class="col-3" *ngFor="let book of books">
+                <app-card-score-book [book]="book" ></app-card-score-book>
+             </div>
+        </div>
+    </p-tabPanel>
+</p-tabView>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CoreService } from '../../core/services/core.service';
 
 @Component({
@@ -9,12 +10,25 @@ import { CoreService } from '../../core/services/core.service';
 export class HeaderComponent implements OnInit {
 
   constructor( 
-    public coreService: CoreService
+    public coreService: CoreService,
+    public router: Router 
   ) { 
 
   }
 
-  ngOnInit(): void {
+  value3 : any;
+  
+  
+  ngOnInit(): void {    
+  }
+
+  ruta(){
+    return this.router.url
+  }
+
+  salir(){
+    localStorage.clear();
+    this.router.navigate(["login"]);
   }
 
 }

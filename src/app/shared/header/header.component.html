@@ -1,22 +1,20 @@
-<header class="ae-container-fluid ae-container-fluid--full rk-header">
-    <input type="checkbox" id="mobile-menu" class="rk-mobile-menu">
-    <label for="mobile-menu">
-      <svg>
-        <use xlink:href="assets/img/symbols.svg#bar"></use>
-      </svg>
-      <svg>
-        <use xlink:href="assets/img/symbols.svg#bar"></use>
-      </svg>
-      <svg>
-        <use xlink:href="assets/img/symbols.svg#bar"></use>
-      </svg>
-    </label>
-    <div class="ae-container-fluid rk-topbar">
-      <h1 class="rk-logo"></h1>
-      <nav class="rk-navigation">
-        <ul class="rk-menu">
-          
-        </ul>
-      </nav>
+<header *ngIf="ruta() != '/' && ruta() != '/login'">
+    
+  <div class="grid justify-content-center">
+    <div class="col-2">
+      <img src="/assets/img/logo.png" alt="Logo" width="50%">
     </div>
-  </header>
+    <div class="col-6 flex">
+        <span class="p-input-icon-left input-search flex align-items-center">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText placeholder="Busca libros por titulo" [(ngModel)]="value3" class="input-search" />
+        </span>
+        <button pButton pRipple type="button" label="Buscar" class="p-button-raised ml-2 "></button>
+
+    </div>
+    <div class="col-2 flex text-right">
+      <button pButton pRipple type="button" label="Cerrar" class="p-button-raised p-button-secondary ml-auto" (click)="salir()"></button>
+    </div>
+  </div>
+
+</header>

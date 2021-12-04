@@ -1,0 +1,23 @@
+<div class="grid justify-content-center pt-8 pb-8">
+    <div class="col-6 text-center">
+        <h2>Bienvenido a nuestra libreria</h2>
+        <div class="grid justify-content-center">
+            <div class="col-12 text-center">
+                <img src="/assets/img/logo.png" alt="Logo" width="30%">
+            </div>
+        </div>
+    
+        <div class="grid justify-content-center">
+            <div class="col-12 text-center">
+                <p>Ingrese el numero del usuario</p>
+                <p-inputNumber [(ngModel)]="iduser"></p-inputNumber>
+                <div class="grid justify-content-center pt-3">
+                    <div class="col-6 text-center">
+                        <button pButton pRipple type="button" label="Ingresar" class="p-button-rounded p-button-secondary" (click)="ingresar($event)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

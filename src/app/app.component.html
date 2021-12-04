@@ -1,9 +1,9 @@
 <app-header></app-header>
 
-<section class="ae-container-fluid rk-main">
-
-<router-outlet></router-outlet>
-
-</section>
+<div class="grid justify-content-center mt-4">
+    <section class="container-main"  [ngClass]="ruta != '/' ? ' col-11' :'col-6'">
+        <router-outlet></router-outlet>
+    </section>
+</div>
 
 <app-footer></app-footer>

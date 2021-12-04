@@ -23,12 +23,7 @@ export class CoreService {
   info: any = {};
 
   constructor(private http: HttpClient) {
-    // Lectura de archivo data.json
-    this.http.get('assets/data/data.json').subscribe(
-      resp => {
-        this.info = resp;
-      }
-    )
+    
    }
 
   /**

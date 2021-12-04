@@ -1,0 +1,20 @@
+.book-item {
+    .book-item-content {
+        border: 1px solid var(--surface-d);
+        border-radius: 10px;
+        text-align: center;
+        padding-bottom: 20px;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .book-image {
+        width: 50%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    }
+}
+
+.imagen{
+    border: none;
+    background-color: #fff;
+  }

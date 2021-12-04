@@ -9,12 +9,26 @@
     </div>
 </div>
 
-<p-dialog header="Header" [(visible)]="displayResponsive" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}"
+<p-dialog header="{{book?.title}}" [(visible)]="displayResponsive" [breakpoints]="{'960px': '75vw'}" [style]="{width: '40vw'}"
     [draggable]="false" [resizable]="false">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        
+        <div class="grid">
+            <div class="col-3 text-center">
+                <img [src]="book?.image_url" [alt]="book?.title" class="book-image" />
+            </div>
+            <div class="col-9">
+                <h4>{{book?.title}}</h4>
+                <p><b>Autor/s: </b>{{book?.authors}}</p>
+                <p><b>Año de publicacion: </b>{{book?.original_publication_year}}</p>
+                <p><b>Raiting: </b>{{book?.ratings_count}}</p>
+                <p><b>Idioma:  </b>{{book?.language_code}}</p>
+
+                <h5></h5>
+                <h5></h5>
+                <h5></h5>
+
+            </div>
+        </div>
         <ng-template pTemplate="footer">
 
         </ng-template>

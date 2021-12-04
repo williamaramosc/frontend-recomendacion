@@ -7,9 +7,9 @@
     <div class="col-6 flex">
         <span class="p-input-icon-left input-search flex align-items-center">
             <i class="pi pi-search"></i>
-            <input type="text" pInputText placeholder="Busca libros por titulo" [(ngModel)]="value3" class="input-search" />
+            <input type="text" pInputText placeholder="Busca libros por titulo" [(ngModel)]="buscar"  class="input-search"/>
         </span>
-        <button pButton pRipple type="button" label="Buscar" class="p-button-raised ml-2 "></button>
+        <button (click)="buscarxLibro()" pButton pRipple type="button" label="Buscar" class="p-button-raised ml-2 "  ></button>
 
     </div>
     <div class="col-2 flex text-right">

@@ -9,5 +9,5 @@ export class Book {
     ratings_count?: Number;
     language_code?: String;
     image_url?: String;
-
+    rating? : Number;
 }

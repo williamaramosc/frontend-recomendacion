@@ -6,7 +6,9 @@ import { throwError } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    "Access-Control-Allow-Methods" : "DELETE, POST, GET, OPTIONS",
+    "Access-Control-Allow-Origin": "*"
   })
 };
 
@@ -19,7 +21,7 @@ export class CoreService {
   /**
    * Declaracion de variables
    */
-  protected baseUrl: string = 'http://localhost:3000';
+  protected baseUrl: string = 'http://127.0.0.1:8000';
   info: any = {};
 
   constructor(private http: HttpClient) {
@@ -37,6 +39,17 @@ export class CoreService {
     );
   }
 
+    /**
+   * Servicio get para traer
+   * @param endpoint 
+   * @returns 
+   */
+  getWithParams(endpoint: string, element: any) {
+    return this.http.get(this.baseUrl + endpoint + '/'+ element).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   /**
    * servicio post para crear
    * @param endpoint 
@@ -44,7 +57,7 @@ export class CoreService {
    * @returns 
    */
   post(endpoint: string, element: any) {
-    return this.http.post(this.baseUrl + endpoint, element, httpOptions).pipe(
+    return this.http.post(this.baseUrl + endpoint + '/'+ element, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

@@ -5,8 +5,9 @@
             <img [src]="book?.image_url" [alt]="book?.title" class="book-image" />
         </div>
         <div class="text-center">
-            <h6>¿Cuanto te gusta este libro?</h6>
-            <p-rating [ngModel]="val2" [readonly]="true" [stars]="10" [cancel]="false"></p-rating>
+            <h6>Calificacion : {{book?.rating}}</h6>
+            <p-rating [ngModel]="book?.rating" [readonly]="true" [stars]="10" [cancel]="false"></p-rating>
+
         </div>
     </div>
 </div>

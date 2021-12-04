@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  value3 : any;
+  buscar : any;
   
   
   ngOnInit(): void {    
@@ -29,6 +29,11 @@ export class HeaderComponent implements OnInit {
   salir(){
     localStorage.clear();
     this.router.navigate(["login"]);
+  }
+
+
+  buscarxLibro(){   
+    this.router.navigate(["home/"+this.buscar]);
   }
 
 }

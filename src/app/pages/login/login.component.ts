@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CoreService } from '../../core/services/core.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(
-    public router: Router 
+    public router: Router ,
+    public coreService : CoreService 
   ) { }
 
   iduser? : Number;
@@ -22,9 +24,21 @@ export class LoginComponent implements OnInit {
     
   }
 
-  ingresar(e:any){
-    localStorage.setItem('iduser', "1234" );
-    this.router.navigate(['home']);
+  async ingresar(e:any){
+    await this.coreService.post('/login', this.iduser).subscribe(
+      (res: any) => {
+        console.log(res);
+        if(res.user_id == 0){
+          // Mensaje de error por hacer
+        }else{
+          localStorage.setItem('iduser', res.user_id );
+          this.router.navigate(['home']);
+        }
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    )
   }
 
 }
